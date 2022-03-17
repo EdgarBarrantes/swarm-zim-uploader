@@ -29,8 +29,8 @@ So far this repo contains:
 To make the backups, in case of need, run:
 
 ```bash
-docker cp swarp-zim-uploader_clef-1_1:/app clef
-docker cp swarp-zim-uploader_bee-1_1:/home/bee/.bee/ bee
+docker cp swarm-zim-uploader_clef-1_1:/app clef
+docker cp swarm-zim-uploader_bee-1_1:/home/bee/.bee/ bee
 ```
 
 The env file here should be modified to have:
