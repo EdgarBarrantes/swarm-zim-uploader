@@ -1,47 +1,54 @@
+# Swarm Zim/Wiki file Uploader
+
 ## How to run
 
 You need to have [docker](https://www.docker.com/) and [docker compose](https://docs.docker.com/compose/install/) installed.
 
-## Progress:
+Run `docker compose-up` to start the services.
 
-So far this repo contains:
+This will start 3 services: [Bee](https://github.com/ethersphere/bee) and [bee-clef](https://github.com/ethersphere/bee-clef) instances that will interact with Swarm. And a Node API running on port 8080, that has the following endpoints:
 
-- `uploader.sh`: handles downloading zimtools, the wikipedia zim file, decompressing and compressing files, and calling:
-- `indexCreatory.py`: handles the creation of index and error files. The index file has links to all the wikipedia articles. It also makes them html files for webbrowsers to read and handles relative links inside those files.
-- `docker-compose.yml`: Currently creating containers of swarm and clef (which might not bee needed) and just a template for the local Dockerfile.
-- A `Dockerfile` that will handle the creation of the main image that will handle the communication with the Bee instance.
+- `upload`: recieves an url to a zim file as a parameter, processes it and uploades it to swarm. Example: `http://localhost:8080/upload?url=https://download.kiwix.org/zim/wikipedia/wikipedia_bm_all_maxi_2022-02.zim`. This will return an object with the hash and a tag to check for the upload.
+- `/check-upload`: Will receive a tag id and return the status of the corresponding upload. Example: `http://localhost:8080/check-upload?tag=:1043824072`
+- `/get-address-to-fund`: This is the address you need to fund with some in the Gnosis Chain with xDai and BZZ in order to get the bee node to interact.
 
-### Next steps:
+Run: `curl http://localhost:8080/get-address-to-fund` and fund the address with the corresponding funds, this is an address in your control, see [To make backups](#to-make-backups).
 
-- Work on the Dockerfile and make it talk to the Bee container, I'm planning on using `swarm-cli` but I might as well just use `curl`.
+This should make the Bee service work properly. To check this, run: `docker-compose logs -f bee-1`.
 
-### Current painpoints:
+When that all is set, you can go a head and call `/upload` with your zim file.
 
-- Automating the process of funding, or taking the keys from a file.
+### Files
 
-## Specification
+- `docker-compose.yml`: Handles creating containers of swarm and clef (which might not _bee_ needed if we move to use a file as a key) and a node container that handles running:
+- `src/app.ts`: express server with endpoints for interacting with Bee container.
+- `scripts/prepareFiles.sh`: handles downloading zimtools, the wikipedia zim file, decompressing and compressing files, and calling:
+- `indexCreator.py`: handles the creation of index and error files. The index file has links to all the wikipedia articles. It also makes them html files for webbrowsers to read and handles relative links inside those files.
 
-- Input: An url to download a ZIM file.
-- Output: A swarm hash of the uploaded files.
+## Notes
 
-## Notes:
-
-To make the backups, in case of need, run:
+### To make backups
 
 ```bash
 docker cp swarm-zim-uploader_clef-1_1:/app clef
 docker cp swarm-zim-uploader_bee-1_1:/home/bee/.bee/ bee
 ```
 
-The env file here should be modified to have:
+### The env file here should be modified:
 
 ```
-BEE_SWAP_ENDPOINT=
-BEE_PASSWORD=
+BEE_SWAP_ENDPOINT=https://gno.getblock.io/mainnet/?api_key=YOUR-API-KEY
+BEE_PASSWORD=YOUR-PASSWORD
 ```
 
-### Future improvement:
+## Future improvement
 
 - Reading a funded wallet.
-- Passing wiki as a variable.
+- Endpoint to check and renew stamps.
 - Creating a frontend for the application.
+- Improve the html file generated (make it look nicer).
+
+## Ideas for future work
+
+- Create a frontend app for interacting with this.
+- Create a browser extension that allows for saving a particular wiki article.
