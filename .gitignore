@@ -5,3 +5,5 @@ wiki*
 keys/key.json
 bee
 clef
+node_modules
+dist

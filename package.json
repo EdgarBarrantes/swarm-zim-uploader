@@ -1,0 +1,25 @@
+{
+  "name": "swarp-zim-uploader",
+  "version": "0.1.0",
+  "description": " Server that processes zim files extracted from wikipedia received by url and handles the upload to Swarm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdgarBarrantes/swarm-zim-uploader.git"
+  },
+  "keywords": [
+    "swarm",
+    "archive",
+    "web",
+    "wikipedia"
+  ],
+  "author": "Edgar Barrantes",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/EdgarBarrantes/swarm-zim-uploader/issues"
+  },
+  "homepage": "https://github.com/EdgarBarrantes/swarm-zim-uploader#readme"
+}
