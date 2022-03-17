@@ -25,9 +25,9 @@ for fileName in os.listdir(pagesFolder):
     html.write(newContentWithCorrectLinks)
 
   # TODO: When using swarm, this line should be used instead of the next one.
-  # indexHtml += "<a href=/A/" + fileName + ">" + fileName + "</a>\n"
+  indexHtml += "<a href=\"/A/" + pageTitle + ".html\"" + ">" + pageTitle + "</a><br/>"
   # This line is for testing
-  indexHtml += "<a href=" + htmlFile + ">" + pageTitle + "</a><br/>"
+  # indexHtml += "<a href=" + htmlFile + ">" + pageTitle + "</a><br/>"
 
 indexFile.write("<!DOCTYPE html>")
 indexFile.write('<html>')

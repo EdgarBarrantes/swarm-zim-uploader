@@ -67,10 +67,21 @@ services:
     command: start
     depends_on:
       - clef-1
-  # uploader:
-  #   depends_on:
-  #     - bee-1
-  #   build: .
+  uploader:
+    # build: .
+    image: "node:16"
+    depends_on:
+      - bee-1
+    volumes:
+      - ./:/home/node/app
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    command: "npm start"
 volumes:
   clef-1:
   bee-1:
