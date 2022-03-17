@@ -1,3 +1,7 @@
+## How to run
+
+You need to have [docker](https://www.docker.com/) and [docker compose](https://docs.docker.com/compose/install/) installed.
+
 ## Progress:
 
 So far this repo contains:
@@ -13,7 +17,6 @@ So far this repo contains:
 
 ### Current painpoints:
 
-- Issue with Bee container not syncing properly: I'm pretty sure this should be solved by running it on a server with a public reachable IP.
 - Automating the process of funding, or taking the keys from a file.
 
 ## Specification
@@ -26,7 +29,7 @@ So far this repo contains:
 To make the backups, in case of need, run:
 
 ```bash
-docker cp  swarp-zim-uploader_clef-1_1:/app clef
+docker cp swarp-zim-uploader_clef-1_1:/app clef
 docker cp swarp-zim-uploader_bee-1_1:/home/bee/.bee/ bee
 ```
 
@@ -41,9 +44,4 @@ BEE_PASSWORD=
 
 - Reading a funded wallet.
 - Passing wiki as a variable.
-
-### Current ideas:
-
-- Create an express server that will listen for the wiki url and run everything.
-- That same server could be making the calls to the bee service and check when the hash is done and the files propagated. Read more on this.
-- The server could trigger a file creation and share it in a volume.
+- Creating a frontend for the application.
