@@ -27,7 +27,7 @@ app.get("/upload", async (req: Request, res: Response) => {
       hash,
     });
   } else {
-    res.send("I need an url");
+    res.send("I need an url\n");
   }
 });
 
@@ -37,13 +37,12 @@ app.get("/check-upload", async (req: Request, res: Response) => {
     const tagStatus = await checkUploadStatus(<string>tag);
     res.send(tagStatus);
   } else {
-    res.send("I need a tag number");
+    res.send("I need a tag number\n");
   }
 });
 
 const uploadToSwarm = async () => {
-  console.log("Upload has been called.");
-  console.log("Is connected:", await bee.isConnected());
+  console.log("Swarm node up:", await bee.isConnected());
 
   const tag = await bee.createTag();
   const batchId = await debugBee.createPostageBatch("10000000", 20);
@@ -56,7 +55,7 @@ const uploadToSwarm = async () => {
     { tag: tag.uid }
   );
   // Write hash to a file to preserve it.
-  writeHash(hash);
+  writeHash(hash, tagUid);
   return { tag: tagUid, hash };
 };
 
@@ -94,11 +93,15 @@ const prepareFiles = async (url: string) => {
   );
 };
 
-const writeHash = async (hash: string) => {
-  fs.writeFile(`hashes/${hash}.txt`, hash, function (err) {
-    if (err) return console.log(err);
-    console.log("There's been an error while writing the hash");
-  });
+const writeHash = async (hash: string, tagId: number) => {
+  fs.writeFile(
+    `hashes/${hash}.txt`,
+    `hash: ${hash}\ntag: ${tagId}`,
+    function (err) {
+      if (err) return console.log(err);
+      console.log("There's been an error while writing the hash");
+    }
+  );
 };
 
 app.listen(port, function () {

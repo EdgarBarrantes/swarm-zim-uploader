@@ -68,7 +68,6 @@ services:
     depends_on:
       - clef-1
   uploader:
-    # build: .
     image: "node:16"
     depends_on:
       - bee-1
