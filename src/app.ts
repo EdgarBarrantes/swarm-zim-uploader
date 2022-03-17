@@ -25,6 +25,8 @@ app.get("/upload", async (req: Request, res: Response) => {
       data: `File is being uploaded, the tag in order to check upload progress is: ${tag}, and the hash is: ${hash}`,
       tag,
       hash,
+      localUrl: `${publicGateway}/bzz/${hash}`,
+      gatewayUrl: `${publicGateway}/${hash}`,
     });
   } else {
     res.send("I need an url\n");
@@ -39,6 +41,11 @@ app.get("/check-upload", async (req: Request, res: Response) => {
   } else {
     res.send("I need a tag number\n");
   }
+});
+
+app.get("/get-address-to-fund", async (req: Request, res: Response) => {
+  const addresses = await debugBee.getNodeAddresses();
+  res.send(addresses.ethereum);
 });
 
 const uploadToSwarm = async () => {

@@ -1,4 +1,3 @@
-zim*
 wiki*
 *.zim
 .tar*
@@ -7,3 +6,4 @@ bee
 clef
 node_modules
 dist
+zimtools.tar.gz
