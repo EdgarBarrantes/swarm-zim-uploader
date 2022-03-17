@@ -6,4 +6,5 @@ bee
 clef
 node_modules
 dist
+env
 zimtools.tar.gz
