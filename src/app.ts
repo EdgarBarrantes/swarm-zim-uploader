@@ -19,6 +19,9 @@ app.get("/upload", async (req: Request, res: Response) => {
   const { url } = req.query;
   if (url !== undefined) {
     await prepareFiles(<string>url);
+    // Waiting for shell script to finish unpacking zim files and modify.
+    // Will change as soon as I understand how to wait for exec command.
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     const { tag, hash } = await uploadToSwarm();
     res.send({
       status: 200,
@@ -55,7 +58,6 @@ const uploadToSwarm = async () => {
   const batchId = await debugBee.createPostageBatch("10000000", 20);
   // const batchId =
   //   "aafb6571891bdda09c187549bc5a6efe87f6ee6f9af2b098d9f2761aa5bdfc4a";
-  // console.log(batchId);
   const { tagUid, reference: hash } = await bee.uploadFilesFromDirectory(
     batchId,
     "wiki",
