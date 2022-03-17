@@ -36,3 +36,14 @@ The env file here should be modified to have:
 BEE_SWAP_ENDPOINT=
 BEE_PASSWORD=
 ```
+
+### Future improvement:
+
+- Reading a funded wallet.
+- Passing wiki as a variable.
+
+### Current ideas:
+
+- Create an express server that will listen for the wiki url and run everything.
+- That same server could be making the calls to the bee service and check when the hash is done and the files propagated. Read more on this.
+- The server could trigger a file creation and share it in a volume.
