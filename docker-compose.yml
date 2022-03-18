@@ -80,7 +80,7 @@ services:
       - "8080"
     ports:
       - "8080:8080"
-    command: bash -c "cd app-wiki && npm install && cd .. && npm install && npm start"
+    command: bash -c "cd app-wiki && npm install && cd .. && npm install && npm run build && npm start"
 volumes:
   clef-1:
   bee-1:
