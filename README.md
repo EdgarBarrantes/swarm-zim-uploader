@@ -25,7 +25,8 @@ When that all is set, you can go a head and call `/upload` with your zim file.
 - `docker-compose.yml`: Handles creating containers of swarm and clef (which might not _bee_ needed if we move to use a file as a key) and a node container that handles running:
 - `src/app.ts`: express server with endpoints for interacting with Bee container.
 - `scripts/prepareFiles.sh`: handles downloading zimtools, the wikipedia zim file, decompressing and compressing files, and calling:
-- `indexCreator.py`: handles the creation of index and error files. The index file has links to all the wikipedia articles. It also makes them html files for webbrowsers to read and handles relative links inside those files.
+- ~~`indexCreator.py`: handles the creation of index and error files. The index file has links to all the wikipedia articles. It also makes them html files for webbrowsers to read and handles relative links inside those files.~~
+- A Next.js application is in place now in order to handle the fact that the root is `/bzz/HASH`, it works nicely now, plus the index is prettier.
 
 ## Notes
 
@@ -66,3 +67,7 @@ When developing `app-wiki` a error comes out (similar to [this](https://github.c
    - Try using a ready made tar file with bee-js.
    - Trying changing the bee-js library for a direct call.
    - Adjusting memory settings (?)
+
+2. Stamp wait time for propagation. Solutions:
+   - I'm envisioning something akin to a frontend for this application that could handle notifying the user when the stamps are ready to be used. It could either be via repeated calls or a websocket (if Bee nodes allow it).
+   - The previous solution also implies having an endpoint specific for creating stamps, and with the result calling the upload endpoint.
