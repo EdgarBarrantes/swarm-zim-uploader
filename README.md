@@ -12,9 +12,11 @@ This will start 3 services: [Bee](https://github.com/ethersphere/bee) and [bee-c
 - `/check-upload`: Will receive a tag id and return the status of the corresponding upload. Example: `http://localhost:8080/check-upload?tag=:1043824072`
 - `/get-address-to-fund`: This is the address you need to fund with some in the Gnosis Chain with xDai and BZZ in order to get the bee node to interact.
 
-Run: `curl http://localhost:8080/get-address-to-fund` and fund the address with the corresponding funds, this is an address in your control, see [To make backups](#to-make-backups).
+Run (or simply visit the address): `curl http://localhost:8080/get-address-to-fund` and fund the address with the corresponding funds, this is an address in your control, see [To make backups](#to-make-backups).
 
 This should make the Bee service work properly. To check this, run: `docker-compose logs -f bee-1`.
+
+If you want to check the logs of the API container: `docker-compose logs -f uploader`
 
 When that all is set, you can go a head and call `/upload` with your zim file.
 
@@ -52,3 +54,15 @@ BEE_PASSWORD=YOUR-PASSWORD
 
 - Create a frontend app for interacting with this.
 - Create a browser extension that allows for saving a particular wiki article.
+
+## Development notes
+
+When developing `app-wiki` a error comes out (similar to [this](https://github.com/TypeStrong/ts-node/issues/270)). What's happening docker-compose automatically installs dependencies, which makes the docker user the owner. This can be fixed by running `npm install` on the local machine.
+
+## Current issues and potential solutions
+
+1. Upload of large directories tends to fail. Solutions:
+
+   - Try using a ready made tar file with bee-js.
+   - Trying changing the bee-js library for a direct call.
+   - Adjusting memory settings (?)
