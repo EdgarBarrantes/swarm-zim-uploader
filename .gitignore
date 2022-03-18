@@ -9,3 +9,5 @@ dist
 .env
 zimtools.tar.gz
 hashes/*
+app-wiki/public/-
+app-wiki/public/I
