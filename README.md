@@ -78,3 +78,11 @@ When developing `app-wiki` an error comes out (similar to [this](https://github.
 ## Credits
 
 This would not have worked out well without the help of [ldeffenb](https://github.com/ldeffenb). The upload functionality in chunks was grabbed from his repository. We talked on discord regarding mixing this solution with [his](https://github.com/ldeffenb/Swarming-Wikipedia/blob/main/src/index.ts) and he was kind enough to agree in mixing them to get this work out there. See his [special considerations](https://github.com/ldeffenb/Swarming-Wikipedia#special-considerations) for more.
+
+## Last Minute Shortcut
+
+If you don't want to clone and run the uploader, you can see the results on the mainnet using either the following reference in your own mainnet swarm node, or via the bzz.link gateway.  Note that the gateway's access throttle can make images fail to appear until several refreshes are done.
+
+bzz/2fb90d693e7202791e8148ca5d5cbc46aaae2f9c6f606eb7211ba2a08dedf31a/
+
+https://bah5acgzaf64q22j6oibhshubjdff2xf4i2vk4l44n5qg5nzbdorkbdpn6mna.bzz.link/
