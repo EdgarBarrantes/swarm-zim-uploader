@@ -177,7 +177,7 @@ const prepareFiles = async (url: string) => {
 const writeHash = async (hash: string, tagId: number) => {
   fs.writeFile(
     `hashes/${hash}.txt`,
-    `hash: ${hash}tag: ${tagId}`,
+    `hash: ${hash}\ntag: ${tagId}`,
     function (err) {
       if (err) return console.log(err);
       console.log("Hash writen to disk!");

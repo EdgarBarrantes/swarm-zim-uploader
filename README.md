@@ -31,6 +31,7 @@ The main files to take note of are:
 - `src/app.ts`: express server with endpoints for interacting with the Bee container.
 - `scripts/prepareFiles.sh`: handles decompressing files with zimtools, and calling.
 - `src/utils.ts`: handles upload of files with [mantaray-js](https://github.com/ethersphere/mantaray-js). For more information on this see the [credits](#credits).
+- `hashes/` the hashes folder will store the hashes created as a backup.
 
 There are some ideas that were implemented and that I still have on this repo like:
 
